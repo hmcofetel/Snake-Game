@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author minhc
- *
- */
-module SnakeGame {
-}
