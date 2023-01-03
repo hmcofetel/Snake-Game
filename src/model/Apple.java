@@ -2,8 +2,6 @@ package model;
 
 import java.awt.Color;
 import java.util.HashSet;
-
-import ui.GameConfig;
 import util.TileType;
 
 public class Apple {

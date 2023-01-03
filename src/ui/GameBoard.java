@@ -11,13 +11,11 @@ import model.TileGrid;
 
 public class GameBoard extends GameWidget{
 	private static TileGrid grid;
-	private static SnakeList snakes;
 	GameBoard(GamePanel root) {
 		super(root, 0, 0);
 		GameBoard.grid = new TileGrid( GameConfig.SCREEN_WIDTH/GameConfig.UNIT_SIZE,GameConfig.SCREEN_HEIGHT/GameConfig.UNIT_SIZE,GameConfig.UNIT_SIZE );
-		GameBoard.snakes = new SnakeList();
-		GameBoard.snakes.addSnake(new Snake(0,0,Color.GREEN,Color.GREEN ));
-
+		SnakeList.addSnake(new Snake(0,0,Color.GREEN,Color.BLUE ));
+		SnakeList.addSnake(new Snake(10,10,Color.CYAN,Color.CYAN ));
 	}
 	
 	
@@ -26,7 +24,7 @@ public class GameBoard extends GameWidget{
 		if(this.isDisable()) {
 			return;
 		}
-		Apple.generate(10);
+		Apple.generate(50);
 		SnakeList.calculateSnakes();
 		SnakeList.moveSnakes();
 	}

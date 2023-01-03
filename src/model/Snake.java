@@ -49,6 +49,8 @@ public class Snake {
 	}
 	
 	public void calculateMoveStep() {
+		if (this.isDead())
+			return;
 		int[]curHead = this.head.getIndex();
 		
 		
@@ -89,7 +91,23 @@ public class Snake {
 	}
 	
 	public void move() {
+		if (this.isDead())
+			return;
+		
 		this.body.addLast(this.head);
+		
+		if (this.nextHead.getType() == TileType.FOOD ) {
+			this.body.addFirst(this.nextHead);
+			Apple.removeApple(this.nextHead);
+		}
+		
+		if (this.nextHead.getType() ==  TileType.BODY) {
+			this.dead();
+			return;
+		}
+		
+		
+		
 		this.body.getLast().setType(TileType.BODY, this.colorBody);
 		this.body.getFirst().setType(TileType.BACKGROUND);
 		this.body.removeFirst();
@@ -99,6 +117,9 @@ public class Snake {
 	
 	private void dead() {
 		this.dead = true;
+		for (Tile tile: body) {
+			tile.setType(TileType.FOOD, Color.RED);
+		}
 	}
 	
 	public boolean isDead() {

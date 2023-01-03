@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import model.SnakeList;
 import util.*;
 
 public class GamePanel extends JPanel implements ActionListener {
@@ -150,7 +151,7 @@ public class GamePanel extends JPanel implements ActionListener {
 		public void keyPressed(KeyEvent e){
 			switch(gameState) {
 			case BOT_PLAYER_OPTION:
-				System.out.println(e.getKeyCode());
+				
 				entryNumberBot.getNumber(e.getKeyCode());
 				if (entryNumberBot.isEntered()) {
 					titleGame.setText(Integer.toString(entryNumberBot.getEnteredNumber()));
@@ -158,6 +159,24 @@ public class GamePanel extends JPanel implements ActionListener {
 					clearAllWidgets();
 				}
 				break;
+			
+			case SINGLE_PLAYER: 
+				switch(e.getKeyCode()){
+				case KeyEvent.VK_LEFT:
+					SnakeList.getSnakeList().get(0).changeDirection(SnakeDirection.LEFT);
+					break;
+				case KeyEvent.VK_RIGHT:
+					SnakeList.getSnakeList().get(0).changeDirection(SnakeDirection.RIGHT);
+					break;
+				case KeyEvent.VK_UP:
+					SnakeList.getSnakeList().get(0).changeDirection(SnakeDirection.UP);
+					break;
+				case KeyEvent.VK_DOWN:
+					SnakeList.getSnakeList().get(0).changeDirection(SnakeDirection.DOWN);
+					break;
+				}
+				break;
+			
 			default:
 				break;
 			

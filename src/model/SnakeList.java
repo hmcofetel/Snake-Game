@@ -3,23 +3,27 @@ package model;
 import java.util.LinkedList;
 
 public class SnakeList {
-	private static LinkedList<Snake> snakes;
+	private static LinkedList<Snake> snakes = new LinkedList<Snake>();
 	
 	
-	public SnakeList (){
-		snakes = new LinkedList<Snake>();
-	}
-	
-	public void addSnake(Snake snake) {
+	public static void addSnake(Snake snake) {
 		snakes.addLast(snake);
 	}
 	
-	public void removeSnake(Snake snake) {
+	public static void removeSnake(Snake snake) {
 		snakes.remove(snake);
+	}
+	
+	public static LinkedList<Snake> getSnakeList(){
+		return  SnakeList.snakes;
 	}
 	
 	public static void moveSnakes() {
 		for(Snake snake:snakes) {
+			if (snake.isDead()) {
+				snakes.remove(snake);
+				continue;
+			}
 			snake.move();
 		}
 	}
